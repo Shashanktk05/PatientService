@@ -14,22 +14,14 @@ public class PatientService {
 
 	private PatientRepository patientRepository;
 
-	public PatientRepository getPatientRepository() {
-		return patientRepository;
-	}
-
-	public void setPatientRepository(PatientRepository patientRepository) {
+	public PatientService(PatientRepository patientRepository) {
+		super();
 		this.patientRepository = patientRepository;
 	}
 
 	public List<PatientResponseDTO> getPatients() {
 		List<Patient> patients = patientRepository.findAll();
-
-		List<PatientResponseDTO> patientResponseDTO = patients.stream().map(patient -> PatientMapper.toDTO(patient))
-				.toList();
-
-		return patientResponseDTO;
-
+		return patients.stream().map(patient -> PatientMapper.toDTO(patient)).toList();
 	}
 
 }
